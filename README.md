@@ -9,7 +9,8 @@ python mujoco_converter.py --xml_model_path ./xml/floor-5506-10-1-01-12-44-00.xm
 
 2. Run PPO (forward & goal reaching)
 ```bash
-python train_ppo.py
+CUDA_VISIBLE_DEVICES=2 python train_ppo.py --env unimal_0
+CUDA_VISIBLE_DEVICES=2 python train_ppo.py --env unimal_0_run
 ```
 
 

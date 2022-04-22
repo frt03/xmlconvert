@@ -1,5 +1,3 @@
-# PPO
-# MLPPolicy
 import copy
 import functools
 import os
@@ -20,7 +18,7 @@ import environments
 
 
 FLAGS = flags.FLAGS
-flags.DEFINE_string('env', 'ant_4_goal', 'Name of environment to train.')
+flags.DEFINE_string('env', 'unimal_0', 'Name of environment to train.')
 flags.DEFINE_integer('total_env_steps', 30000000,
                      'Number of env steps to run training for.')
 flags.DEFINE_integer('eval_frequency', 20, 'How many times to run an eval.')
@@ -38,7 +36,7 @@ flags.DEFINE_integer('num_minibatches', 32, 'Number')
 flags.DEFINE_integer('num_update_epochs', 4,
                      'Number of times to reuse each transition for gradient '
                      'computation.')
-flags.DEFINE_string('logdir', '', 'Logdir.')
+flags.DEFINE_string('logdir', './results/', 'Logdir.')
 flags.DEFINE_bool('normalize_observations', True,
                   'Whether to apply observation normalization.')
 flags.DEFINE_integer('max_devices_per_host', None,
@@ -98,18 +96,11 @@ def main(unused_argv):
       post_plot_fn=functools.partial(plt.savefig, f'{output_dir}/progress.png'))
 
   env_fn = environments.create_fn(FLAGS.env)
-  # env_fn = envs.create_fn(FLAGS.env)
 
   inference_fn, params, _ = ppo.train(
       environment_fn=env_fn,
-      # progress_fn=progress,
       progress_fn=None,
       **train_job_params)
-
-  # Save to flax serialized checkpoint.
-  filename = f'ppo_{FLAGS.env}_final.pkl'
-  path = os.path.join(output_dir, filename)
-  model.save_params(path, params)
 
   # output an episode trajectory
   env = env_fn()
