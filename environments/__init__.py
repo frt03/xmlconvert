@@ -10,6 +10,7 @@ import environments.unimal_0
 import environments.unimal_1
 import environments.unimal_2
 import environments.unimal_0_run
+import environments.unimal_0_run_fix
 import environments.unimal_1_run
 import environments.unimal_2_run
 
@@ -21,6 +22,7 @@ _envs = {
     'unimal_1': unimal_1.Unimal,
     'unimal_2': unimal_2.Unimal,
     'unimal_0_run': unimal_0_run.Unimal,
+    'unimal_0_run_fix': unimal_0_run_fix.Unimal,
     'unimal_1_run': unimal_1_run.Unimal,
     'unimal_2_run': unimal_2_run.Unimal,
 }
