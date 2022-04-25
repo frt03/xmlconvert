@@ -781,42 +781,6 @@ collide_include {
   first: "Ground"
   second: "limb_8"
 }
-collide_include {
-  first: "Ground"
-  second: "Ball"
-}
-collide_include {
-  first: "Ball"
-  second: "torso_0"
-}
-collide_include {
-  first: "Ball"
-  second: "limb_0"
-}
-collide_include {
-  first: "Ball"
-  second: "limb_1"
-}
-collide_include {
-  first: "Ball"
-  second: "limb_4"
-}
-collide_include {
-  first: "Ball"
-  second: "limb_5"
-}
-collide_include {
-  first: "Ball"
-  second: "limb_6"
-}
-collide_include {
-  first: "Ball"
-  second: "limb_7"
-}
-collide_include {
-  first: "Ball"
-  second: "limb_8"
-}
 dt: 0.02
 substeps: 4
 """

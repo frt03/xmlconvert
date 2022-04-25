@@ -1,4 +1,3 @@
-# TODO: edit
 import brax
 import jax
 import brax.jumpy as jp
@@ -768,87 +767,87 @@ actuators {
   name: "limby_0"
   joint: "limby_0"
   strength: 150.0
-  angle {
+  torque {
   }
 }
 actuators {
   name: "limbx_4"
   joint: "limbx_4"
   strength: 250.0
-  angle {
+  torque {
   }
 }
 actuators {
   name: "limbx_9"
   joint: "limbx_9"
   strength: 150.0
-  angle {
+  torque {
   }
 }
 actuators {
   name: "limby_9"
   joint: "limby_9"
   strength: 250.0
-  angle {
+  torque {
   }
 }
 actuators {
   name: "limby_6"
   joint: "limby_6"
   strength: 150.0
-  angle {
+  torque {
   }
 }
 actuators {
   name: "limby_1"
   joint: "limby_1"
   strength: 150.0
-  angle {
+  torque {
   }
 }
 actuators {
   name: "limbx_5"
   joint: "limbx_5"
   strength: 250.0
-  angle {
+  torque {
   }
 }
 actuators {
   name: "limbx_10"
   joint: "limbx_10"
   strength: 150.0
-  angle {
+  torque {
   }
 }
 actuators {
   name: "limby_10"
   joint: "limby_10"
   strength: 250.0
-  angle {
+  torque {
   }
 }
 actuators {
   name: "limby_7"
   joint: "limby_7"
   strength: 150.0
-  angle {
+  torque {
   }
 }
 actuators {
   name: "limbx_8"
   joint: "limbx_8"
   strength: 250.0
-  angle {
+  torque {
   }
 }
 actuators {
   name: "limbx_11"
   joint: "limbx_11"
   strength: 150.0
-  angle {
+  torque {
   }
 }
-friction: 0.6
+friction: 1.0
 gravity {
   z: -9.81
 }

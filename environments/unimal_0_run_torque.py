@@ -1,4 +1,3 @@
-# TODO: edit
 import brax
 import jax
 import brax.jumpy as jp
@@ -12,7 +11,7 @@ tfp = tfp.substrates.jax
 tfd = tfp.distributions
 
 class Unimal(env.Env):
-  """Trains a unimal100 (floor-5506-10-1-01-12-44-00) to run."""
+  """Trains a unimal100 (floor-1409-1-6-01-07-43-16) to run."""
 
   def __init__(self, **kwargs):
     super().__init__(_SYSTEM_CONFIG, **kwargs)
@@ -76,7 +75,7 @@ class Unimal(env.Env):
     xpos = qp.pos[1] - torso_x_pos
     expmap = quat2expmap(qp.rot[1])
     angle = jnp.degrees(jp.array([joint_angle[0]]))
-    joint_range = jp.array([-45.0, 45.0])
+    joint_range = jp.array([-60.0, 60.0])
     angle = (angle - joint_range[0]) / (joint_range[1] - joint_range[0])
     joint_range = (180.0 + joint_range) / 360.0
     obs = jp.concatenate(
@@ -90,11 +89,11 @@ class Unimal(env.Env):
       ])
     full_obs.append(obs)
 
-    # limb_4
+    # limb_1
     xpos = qp.pos[2] - torso_x_pos
     expmap = quat2expmap(qp.rot[2])
     angle = jnp.degrees(jp.array([joint_angle[1]]))
-    joint_range = jp.array([-60.0, 30.0])
+    joint_range = jp.array([0.0, 90.0])
     angle = (angle - joint_range[0]) / (joint_range[1] - joint_range[0])
     joint_range = (180.0 + joint_range) / 360.0
     obs = jp.concatenate(
@@ -108,11 +107,11 @@ class Unimal(env.Env):
       ])
     full_obs.append(obs)
 
-    # limb_9
+    # limb_4
     xpos = qp.pos[3] - torso_x_pos
     expmap = quat2expmap(qp.rot[3])
     angle = jnp.degrees(jp.array([joint_angle[2]]))
-    joint_range = jp.array([-60.0, 0.0])
+    joint_range = jp.array([0.0, 45.0])
     angle = (angle - joint_range[0]) / (joint_range[1] - joint_range[0])
     joint_range = (180.0 + joint_range) / 360.0
     obs = jp.concatenate(
@@ -126,11 +125,11 @@ class Unimal(env.Env):
       ])
     full_obs.append(obs)
 
-    # limb_6
+    # limb_5
     xpos = qp.pos[4] - torso_x_pos
     expmap = quat2expmap(qp.rot[4])
     angle = jnp.degrees(jp.array([joint_angle[3]]))
-    joint_range = jp.array([-45.0, 45.0])
+    joint_range = jp.array([-30.0, 0.0])
     angle = (angle - joint_range[0]) / (joint_range[1] - joint_range[0])
     joint_range = (180.0 + joint_range) / 360.0
     obs = jp.concatenate(
@@ -144,11 +143,11 @@ class Unimal(env.Env):
       ])
     full_obs.append(obs)
 
-    # limb_1
+    # limb_7
     xpos = qp.pos[5] - torso_x_pos
     expmap = quat2expmap(qp.rot[5])
     angle = jnp.degrees(jp.array([joint_angle[4]]))
-    joint_range = jp.array([-45.0, 45.0])
+    joint_range = jp.array([0.0, 90.0])
     angle = (angle - joint_range[0]) / (joint_range[1] - joint_range[0])
     joint_range = (180.0 + joint_range) / 360.0
     obs = jp.concatenate(
@@ -162,11 +161,11 @@ class Unimal(env.Env):
       ])
     full_obs.append(obs)
 
-    # limb_5
+    # limb_6
     xpos = qp.pos[6] - torso_x_pos
     expmap = quat2expmap(qp.rot[6])
     angle = jnp.degrees(jp.array([joint_angle[5]]))
-    joint_range = jp.array([-60.0, 30.0])
+    joint_range = jp.array([-30.0, 0.0])
     angle = (angle - joint_range[0]) / (joint_range[1] - joint_range[0])
     joint_range = (180.0 + joint_range) / 360.0
     obs = jp.concatenate(
@@ -180,11 +179,11 @@ class Unimal(env.Env):
       ])
     full_obs.append(obs)
 
-    # limb_10
+    # limb_8
     xpos = qp.pos[7] - torso_x_pos
     expmap = quat2expmap(qp.rot[7])
     angle = jnp.degrees(jp.array([joint_angle[6]]))
-    joint_range = jp.array([-30.0, 0.0])
+    joint_range = jp.array([0.0, 90.0])
     angle = (angle - joint_range[0]) / (joint_range[1] - joint_range[0])
     joint_range = (180.0 + joint_range) / 360.0
     obs = jp.concatenate(
@@ -198,61 +197,7 @@ class Unimal(env.Env):
       ])
     full_obs.append(obs)
 
-    # limb_7
-    xpos = qp.pos[8] - torso_x_pos
-    expmap = quat2expmap(qp.rot[8])
-    angle = jnp.degrees(jp.array([joint_angle[7]]))
-    joint_range = jp.array([-45.0, 45.0])
-    angle = (angle - joint_range[0]) / (joint_range[1] - joint_range[0])
-    joint_range = (180.0 + joint_range) / 360.0
-    obs = jp.concatenate(
-      [
-        xpos,
-        jp.clip(qp.vel[8], -10., 10.),
-        qp.ang[8],
-        expmap,
-        angle,
-        joint_range
-      ])
-    full_obs.append(obs)
-
-    # limb_8
-    xpos = qp.pos[9] - torso_x_pos
-    expmap = quat2expmap(qp.rot[9])
-    angle = jnp.degrees(jp.array([joint_angle[8]]))
-    joint_range = jp.array([-90.0, 0.0])
-    angle = (angle - joint_range[0]) / (joint_range[1] - joint_range[0])
-    joint_range = (180.0 + joint_range) / 360.0
-    obs = jp.concatenate(
-      [
-        xpos,
-        jp.clip(qp.vel[9], -10., 10.),
-        qp.ang[9],
-        expmap,
-        angle,
-        joint_range
-      ])
-    full_obs.append(obs)
-
-    # limb_11
-    xpos = qp.pos[10] - torso_x_pos
-    expmap = quat2expmap(qp.rot[10])
-    angle = jnp.degrees(jp.array([joint_angle[9]]))
-    joint_range = jp.array([0.0, 90.0])
-    angle = (angle - joint_range[0]) / (joint_range[1] - joint_range[0])
-    joint_range = (180.0 + joint_range) / 360.0
-    obs = jp.concatenate(
-      [
-        xpos,
-        jp.clip(qp.vel[10], -10., 10.),
-        qp.ang[10],
-        expmap,
-        angle,
-        joint_range
-      ])
-    full_obs.append(obs)
-
-    # 15 * 11 dim
+    # 15 * 8 dim
     full_obs = jp.concatenate(full_obs)
     return full_obs.ravel()
 
@@ -271,53 +216,10 @@ bodies {
     y: 1.0
     z: 1.0
   }
-  mass: 3.3510323
+  mass: 4.1887903
 }
 bodies {
   name: "limb_0"
-  colliders {
-    position {
-      y: 0.175
-    }
-    rotation {
-      x: -90.0
-    }
-    capsule {
-      radius: 0.05
-      length: 0.45
-    }
-  }
-  inertia {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-  }
-  mass: 3.2724924
-}
-bodies {
-  name: "limb_4"
-  colliders {
-    position {
-      x: 0.175
-    }
-    rotation {
-      x: -0.0
-      y: 90.0
-    }
-    capsule {
-      radius: 0.05
-      length: 0.45
-    }
-  }
-  inertia {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-  }
-  mass: 3.2724924
-}
-bodies {
-  name: "limb_9"
   colliders {
     position {
       z: -0.175
@@ -335,10 +237,31 @@ bodies {
     y: 1.0
     z: 1.0
   }
-  mass: 3.2724924
+  mass: 2.2907445
 }
 bodies {
-  name: "limb_6"
+  name: "limb_1"
+  colliders {
+    position {
+      x: -0.175
+    }
+    rotation {
+      y: -90.0
+    }
+    capsule {
+      radius: 0.05
+      length: 0.45
+    }
+  }
+  inertia {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+  mass: 2.2907445
+}
+bodies {
+  name: "limb_4"
   colliders {
     position {
       x: -0.225
@@ -356,13 +279,55 @@ bodies {
     y: 1.0
     z: 1.0
   }
-  mass: 4.0578904
+  mass: 2.8405232
 }
 bodies {
-  name: "limb_1"
+  name: "limb_5"
   colliders {
     position {
-      y: -0.175
+      y: 0.225
+    }
+    rotation {
+      x: -90.0
+    }
+    capsule {
+      radius: 0.05
+      length: 0.55
+    }
+  }
+  inertia {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+  mass: 2.8405232
+}
+bodies {
+  name: "limb_7"
+  colliders {
+    position {
+      x: -0.125
+    }
+    rotation {
+      y: -90.0
+    }
+    capsule {
+      radius: 0.05
+      length: 0.35
+    }
+  }
+  inertia {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+  mass: 1.740966
+}
+bodies {
+  name: "limb_6"
+  colliders {
+    position {
+      y: -0.225
     }
     rotation {
       x: 90.0
@@ -370,70 +335,6 @@ bodies {
     }
     capsule {
       radius: 0.05
-      length: 0.45
-    }
-  }
-  inertia {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-  }
-  mass: 3.2724924
-}
-bodies {
-  name: "limb_5"
-  colliders {
-    position {
-      x: 0.175
-    }
-    rotation {
-      x: -0.0
-      y: 90.0
-    }
-    capsule {
-      radius: 0.05
-      length: 0.45
-    }
-  }
-  inertia {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-  }
-  mass: 3.2724924
-}
-bodies {
-  name: "limb_10"
-  colliders {
-    position {
-      z: -0.175
-    }
-    rotation {
-      y: -0.0
-    }
-    capsule {
-      radius: 0.05
-      length: 0.45
-    }
-  }
-  inertia {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-  }
-  mass: 3.2724924
-}
-bodies {
-  name: "limb_7"
-  colliders {
-    position {
-      x: -0.225
-    }
-    rotation {
-      y: -90.0
-    }
-    capsule {
-      radius: 0.05
       length: 0.55
     }
   }
@@ -442,21 +343,20 @@ bodies {
     y: 1.0
     z: 1.0
   }
-  mass: 4.0578904
+  mass: 2.8405232
 }
 bodies {
   name: "limb_8"
   colliders {
     position {
-      x: 0.175
+      x: -0.125
     }
     rotation {
-      x: -0.0
-      y: 90.0
+      y: -90.0
     }
     capsule {
       radius: 0.05
-      length: 0.45
+      length: 0.35
     }
   }
   inertia {
@@ -464,31 +364,7 @@ bodies {
     y: 1.0
     z: 1.0
   }
-  mass: 3.2724924
-}
-bodies {
-  name: "limb_11"
-  colliders {
-    position {
-      x: -0.09
-      z: -0.09
-    }
-    rotation {
-      x: 180.0
-      y: -45.0
-      z: 180.0
-    }
-    capsule {
-      radius: 0.05
-      length: 0.35455844
-    }
-  }
-  inertia {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-  }
-  mass: 2.522896
+  mass: 1.740966
 }
 bodies {
   name: "Ground"
@@ -500,102 +376,37 @@ bodies {
   frozen { all: true }
 }
 joints {
+  name: "limbx_0"
+  stiffness: 5000.0
+  parent: "torso_0"
+  child: "limb_0"
+  parent_offset {
+    z: -0.05
+  }
+  child_offset {
+    z: 0.05
+  }
+  rotation {
+    y: -0.0
+  }
+  angle_limit {
+    min: -60.0
+    max: 60.0
+  }
+  reference_rotation {
+    y: -0.0
+  }
+}
+joints {
   name: "limby_0"
   stiffness: 5000.0
   parent: "torso_0"
   child: "limb_0"
   parent_offset {
-    y: 0.05
-  }
-  child_offset {
-    y: -0.05
-  }
-  rotation {
-    y: -90.0
-  }
-  angle_limit {
-    min: -45.0
-    max: 45.0
-  }
-  reference_rotation {
-    y: -0.0
-  }
-}
-joints {
-  name: "limbx_4"
-  stiffness: 5000.0
-  parent: "limb_0"
-  child: "limb_4"
-  parent_offset {
-    y: 0.35
-  }
-  child_offset {
-    x: -0.05
-  }
-  rotation {
-    y: -90.0
-  }
-  angle_limit {
-    min: -60.0
-    max: 30.0
-  }
-  reference_rotation {
-    y: -0.0
-  }
-}
-joints {
-  name: "limbx_9"
-  stiffness: 5000.0
-  parent: "limb_4"
-  child: "limb_9"
-  parent_offset {
-    x: 0.2
+    z: -0.05
   }
   child_offset {
     z: 0.05
-  }
-  rotation {
-    y: -0.0
-  }
-  angle_limit {
-    min: -30.0
-  }
-  reference_rotation {
-    y: -0.0
-  }
-}
-joints {
-  name: "limby_9"
-  stiffness: 5000.0
-  parent: "limb_4"
-  child: "limb_9"
-  parent_offset {
-    x: 0.2
-  }
-  child_offset {
-    z: 0.05
-  }
-  rotation {
-    y: -0.0
-    z: 90.0
-  }
-  angle_limit {
-    min: -60.0
-  }
-  reference_rotation {
-    y: -0.0
-  }
-}
-joints {
-  name: "limby_6"
-  stiffness: 5000.0
-  parent: "limb_0"
-  child: "limb_6"
-  parent_offset {
-    y: 0.35
-  }
-  child_offset {
-    x: 0.05
   }
   rotation {
     y: -0.0
@@ -612,98 +423,10 @@ joints {
 joints {
   name: "limby_1"
   stiffness: 5000.0
-  parent: "torso_0"
+  parent: "limb_0"
   child: "limb_1"
   parent_offset {
-    y: -0.05
-  }
-  child_offset {
-    y: 0.05
-  }
-  rotation {
-    x: -0.0
-    y: 90.0
-  }
-  angle_limit {
-    min: -45.0
-    max: 45.0
-  }
-  reference_rotation {
-    y: -0.0
-  }
-}
-joints {
-  name: "limbx_5"
-  stiffness: 5000.0
-  parent: "limb_1"
-  child: "limb_5"
-  parent_offset {
-    y: -0.35
-  }
-  child_offset {
-    x: -0.05
-  }
-  rotation {
-    y: -90.0
-  }
-  angle_limit {
-    min: -60.0
-    max: 30.0
-  }
-  reference_rotation {
-    y: -0.0
-  }
-}
-joints {
-  name: "limbx_10"
-  stiffness: 5000.0
-  parent: "limb_5"
-  child: "limb_10"
-  parent_offset {
-    x: 0.2
-  }
-  child_offset {
-    z: 0.05
-  }
-  rotation {
-    y: -0.0
-  }
-  angle_limit {
-    min: -30.0
-  }
-  reference_rotation {
-    y: -0.0
-  }
-}
-joints {
-  name: "limby_10"
-  stiffness: 5000.0
-  parent: "limb_5"
-  child: "limb_10"
-  parent_offset {
-    x: 0.2
-  }
-  child_offset {
-    z: 0.05
-  }
-  rotation {
-    y: -0.0
-    z: 90.0
-  }
-  angle_limit {
-    min: -60.0
-  }
-  reference_rotation {
-    y: -0.0
-  }
-}
-joints {
-  name: "limby_7"
-  stiffness: 5000.0
-  parent: "limb_1"
-  child: "limb_7"
-  parent_offset {
-    y: -0.35
+    z: -0.2
   }
   child_offset {
     x: 0.05
@@ -711,51 +434,6 @@ joints {
   rotation {
     y: -0.0
     z: 90.0
-  }
-  angle_limit {
-    min: -45.0
-    max: 45.0
-  }
-  reference_rotation {
-    y: -0.0
-  }
-}
-joints {
-  name: "limbx_8"
-  stiffness: 5000.0
-  parent: "torso_0"
-  child: "limb_8"
-  parent_offset {
-    x: 0.05
-  }
-  child_offset {
-    x: -0.05
-  }
-  rotation {
-    y: -90.0
-  }
-  angle_limit {
-    min: -90.0
-  }
-  reference_rotation {
-    y: -0.0
-  }
-}
-joints {
-  name: "limbx_11"
-  stiffness: 5000.0
-  parent: "torso_0"
-  child: "limb_11"
-  parent_offset {
-    x: -0.03
-    z: -0.03
-  }
-  child_offset {
-    x: 0.04
-    z: 0.04
-  }
-  rotation {
-    y: 45.0
   }
   angle_limit {
     max: 90.0
@@ -764,91 +442,231 @@ joints {
     y: -0.0
   }
 }
+joints {
+  name: "limby_4"
+  stiffness: 5000.0
+  parent: "torso_0"
+  child: "limb_4"
+  parent_offset {
+    x: -0.05
+  }
+  child_offset {
+    x: 0.05
+  }
+  rotation {
+    y: -0.0
+    z: 90.0
+  }
+  angle_limit {
+    max: 45.0
+  }
+  reference_rotation {
+    y: -0.0
+  }
+}
+joints {
+  name: "limbx_5"
+  stiffness: 5000.0
+  parent: "limb_4"
+  child: "limb_5"
+  parent_offset {
+    x: -0.45
+  }
+  child_offset {
+    y: -0.05
+  }
+  rotation {
+    y: -0.0
+  }
+  angle_limit {
+    min: -30.0
+  }
+  reference_rotation {
+    y: -0.0
+  }
+}
+joints {
+  name: "limbx_7"
+  stiffness: 5000.0
+  parent: "limb_5"
+  child: "limb_7"
+  parent_offset {
+    y: 0.45
+  }
+  child_offset {
+    x: 0.05
+  }
+  rotation {
+    x: -0.0
+    y: 90.0
+  }
+  angle_limit {
+    max: 90.0
+  }
+  reference_rotation {
+    y: -0.0
+  }
+}
+joints {
+  name: "limby_7"
+  stiffness: 5000.0
+  parent: "limb_5"
+  child: "limb_7"
+  parent_offset {
+    y: 0.45
+  }
+  child_offset {
+    x: 0.05
+  }
+  rotation {
+    y: -0.0
+    z: 90.0
+  }
+  angle_limit {
+    min: -30.0
+    max: 30.0
+  }
+  reference_rotation {
+    y: -0.0
+  }
+}
+joints {
+  name: "limbx_6"
+  stiffness: 5000.0
+  parent: "limb_4"
+  child: "limb_6"
+  parent_offset {
+    x: -0.45
+  }
+  child_offset {
+    y: 0.05
+  }
+  rotation {
+    y: -0.0
+  }
+  angle_limit {
+    min: -30.0
+  }
+  reference_rotation {
+    y: -0.0
+  }
+}
+joints {
+  name: "limbx_8"
+  stiffness: 5000.0
+  parent: "limb_6"
+  child: "limb_8"
+  parent_offset {
+    y: -0.45
+  }
+  child_offset {
+    x: 0.05
+  }
+  rotation {
+    x: -0.0
+    y: 90.0
+  }
+  angle_limit {
+    max: 90.0
+  }
+  reference_rotation {
+    y: -0.0
+  }
+}
+joints {
+  name: "limby_8"
+  stiffness: 5000.0
+  parent: "limb_6"
+  child: "limb_8"
+  parent_offset {
+    y: -0.45
+  }
+  child_offset {
+    x: 0.05
+  }
+  rotation {
+    y: -0.0
+    z: 90.0
+  }
+  angle_limit {
+    min: -30.0
+    max: 30.0
+  }
+  reference_rotation {
+    y: -0.0
+  }
+}
+actuators {
+  name: "limbx_0"
+  joint: "limbx_0"
+  strength: 200.0
+  torque {
+  }
+}
 actuators {
   name: "limby_0"
   joint: "limby_0"
-  strength: 150.0
-  angle {
-  }
-}
-actuators {
-  name: "limbx_4"
-  joint: "limbx_4"
   strength: 250.0
-  angle {
-  }
-}
-actuators {
-  name: "limbx_9"
-  joint: "limbx_9"
-  strength: 150.0
-  angle {
-  }
-}
-actuators {
-  name: "limby_9"
-  joint: "limby_9"
-  strength: 250.0
-  angle {
-  }
-}
-actuators {
-  name: "limby_6"
-  joint: "limby_6"
-  strength: 150.0
-  angle {
+  torque {
   }
 }
 actuators {
   name: "limby_1"
   joint: "limby_1"
-  strength: 150.0
-  angle {
+  strength: 200.0
+  torque {
+  }
+}
+actuators {
+  name: "limby_4"
+  joint: "limby_4"
+  strength: 200.0
+  torque {
   }
 }
 actuators {
   name: "limbx_5"
   joint: "limbx_5"
-  strength: 250.0
-  angle {
-  }
-}
-actuators {
-  name: "limbx_10"
-  joint: "limbx_10"
   strength: 150.0
-  angle {
+  torque {
   }
 }
 actuators {
-  name: "limby_10"
-  joint: "limby_10"
-  strength: 250.0
-  angle {
+  name: "limbx_7"
+  joint: "limbx_7"
+  strength: 300.0
+  torque {
   }
 }
 actuators {
   name: "limby_7"
   joint: "limby_7"
+  strength: 250.0
+  torque {
+  }
+}
+actuators {
+  name: "limbx_6"
+  joint: "limbx_6"
   strength: 150.0
-  angle {
+  torque {
   }
 }
 actuators {
   name: "limbx_8"
   joint: "limbx_8"
-  strength: 250.0
-  angle {
+  strength: 300.0
+  torque {
   }
 }
 actuators {
-  name: "limbx_11"
-  joint: "limbx_11"
-  strength: 150.0
-  angle {
+  name: "limby_8"
+  joint: "limby_8"
+  strength: 250.0
+  torque {
   }
 }
-friction: 0.6
+friction: 1.0
 gravity {
   z: -9.81
 }
@@ -856,11 +674,15 @@ angular_damping: -0.05
 baumgarte_erp: 0.1
 collide_include {
   first: "torso_0"
-  second: "limb_4"
+  second: "limb_1"
 }
 collide_include {
   first: "torso_0"
-  second: "limb_9"
+  second: "limb_5"
+}
+collide_include {
+  first: "torso_0"
+  second: "limb_7"
 }
 collide_include {
   first: "torso_0"
@@ -868,139 +690,63 @@ collide_include {
 }
 collide_include {
   first: "torso_0"
-  second: "limb_5"
-}
-collide_include {
-  first: "torso_0"
-  second: "limb_10"
-}
-collide_include {
-  first: "torso_0"
-  second: "limb_7"
-}
-collide_include {
-  first: "limb_0"
-  second: "limb_9"
-}
-collide_include {
-  first: "limb_0"
-  second: "limb_5"
-}
-collide_include {
-  first: "limb_0"
-  second: "limb_10"
-}
-collide_include {
-  first: "limb_0"
-  second: "limb_7"
-}
-collide_include {
-  first: "limb_4"
-  second: "limb_1"
-}
-collide_include {
-  first: "limb_4"
-  second: "limb_5"
-}
-collide_include {
-  first: "limb_4"
-  second: "limb_10"
-}
-collide_include {
-  first: "limb_4"
-  second: "limb_7"
-}
-collide_include {
-  first: "limb_4"
   second: "limb_8"
 }
 collide_include {
-  first: "limb_4"
-  second: "limb_11"
+  first: "limb_0"
+  second: "limb_5"
 }
 collide_include {
-  first: "limb_9"
+  first: "limb_0"
+  second: "limb_7"
+}
+collide_include {
+  first: "limb_0"
   second: "limb_6"
 }
 collide_include {
-  first: "limb_9"
-  second: "limb_1"
-}
-collide_include {
-  first: "limb_9"
-  second: "limb_5"
-}
-collide_include {
-  first: "limb_9"
-  second: "limb_10"
-}
-collide_include {
-  first: "limb_9"
-  second: "limb_7"
-}
-collide_include {
-  first: "limb_9"
+  first: "limb_0"
   second: "limb_8"
-}
-collide_include {
-  first: "limb_9"
-  second: "limb_11"
-}
-collide_include {
-  first: "limb_6"
-  second: "limb_1"
-}
-collide_include {
-  first: "limb_6"
-  second: "limb_5"
-}
-collide_include {
-  first: "limb_6"
-  second: "limb_10"
-}
-collide_include {
-  first: "limb_6"
-  second: "limb_7"
-}
-collide_include {
-  first: "limb_6"
-  second: "limb_8"
-}
-collide_include {
-  first: "limb_6"
-  second: "limb_11"
 }
 collide_include {
   first: "limb_1"
-  second: "limb_10"
+  second: "limb_4"
 }
 collide_include {
-  first: "limb_5"
-  second: "limb_8"
+  first: "limb_1"
+  second: "limb_5"
 }
 collide_include {
-  first: "limb_5"
-  second: "limb_11"
-}
-collide_include {
-  first: "limb_10"
+  first: "limb_1"
   second: "limb_7"
 }
 collide_include {
-  first: "limb_10"
+  first: "limb_1"
+  second: "limb_6"
+}
+collide_include {
+  first: "limb_1"
   second: "limb_8"
 }
 collide_include {
-  first: "limb_10"
-  second: "limb_11"
+  first: "limb_4"
+  second: "limb_7"
+}
+collide_include {
+  first: "limb_4"
+  second: "limb_8"
+}
+collide_include {
+  first: "limb_5"
+  second: "limb_8"
+}
+collide_include {
+  first: "limb_7"
+  second: "limb_6"
 }
 collide_include {
   first: "limb_7"
   second: "limb_8"
-}
-collide_include {
-  first: "limb_7"
-  second: "limb_11"
 }
 collide_include {
   first: "Ground"
@@ -1012,19 +758,11 @@ collide_include {
 }
 collide_include {
   first: "Ground"
-  second: "limb_4"
-}
-collide_include {
-  first: "Ground"
-  second: "limb_9"
-}
-collide_include {
-  first: "Ground"
-  second: "limb_6"
-}
-collide_include {
-  first: "Ground"
   second: "limb_1"
+}
+collide_include {
+  first: "Ground"
+  second: "limb_4"
 }
 collide_include {
   first: "Ground"
@@ -1032,7 +770,7 @@ collide_include {
 }
 collide_include {
   first: "Ground"
-  second: "limb_10"
+  second: "limb_6"
 }
 collide_include {
   first: "Ground"
@@ -1041,10 +779,6 @@ collide_include {
 collide_include {
   first: "Ground"
   second: "limb_8"
-}
-collide_include {
-  first: "Ground"
-  second: "limb_11"
 }
 dt: 0.02
 substeps: 4
