@@ -6,35 +6,19 @@ from brax.envs import wrappers
 from brax.envs.env import Env
 import gym
 
-import environments.unimal_0
-import environments.unimal_1
-import environments.unimal_2
 import environments.unimal_0_run
-import environments.unimal_0_run_fix
-import environments.unimal_0_run_torque
-import environments.unimal_0_torque
-import environments.unimal_1_run
 import environments.unimal_2_run
-import environments.unimal_2_run_torque
 
 from environments.utils import GoalEvalWrapper
 
 
 _envs = {
-    'unimal_0': unimal_0.Unimal,
-    'unimal_1': unimal_1.Unimal,
-    'unimal_2': unimal_2.Unimal,
     'unimal_0_run': unimal_0_run.Unimal,
-    'unimal_0_run_fix': unimal_0_run_fix.Unimal,
-    'unimal_0_run_torque': unimal_0_run_torque.Unimal,
-    'unimal_0_torque': unimal_0_torque.Unimal,
-    'unimal_1_run': unimal_1_run.Unimal,
     'unimal_2_run': unimal_2_run.Unimal,
-    'unimal_2_run_torque': unimal_2_run_torque.Unimal,
 }
 
 
-goal_envs_list = ('unimal_0', 'unimal_1', 'unimal_2', 'unimal_0_torque')
+goal_envs_list = tuple()
 
 
 def create(env_name: str,

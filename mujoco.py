@@ -482,7 +482,8 @@ class MujocoConverter(object):
               name=joint_name,
               joint=joint_name,
               strength=motor.gear.item(),
-              angle=config_pb2.Actuator.Angle()))
+              angle=config_pb2.Actuator.Torque()))
+              # angle=config_pb2.Actuator.Angle()))
 
   def _add_collision_pairs(self):
     """Adds body pairs that can collide with each other to the config."""
